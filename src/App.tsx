@@ -3,22 +3,21 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 
-import Button from "@material-ui/core/Button";
 import {
   createMuiTheme,
   makeStyles,
   ThemeProvider,
 } from "@material-ui/core/styles";
-import Colors from "./Constants/Colors";
+import Colors from "./constants/colors";
+
+import Counter from './containers/counter/Counter';
 
 function Home() {
   return (
     <div>
       <h2>Home</h2>
 
-      <Button variant="contained" color="primary">
-        Hello World
-      </Button>
+      <Counter />      
     </div>
   );
 }
