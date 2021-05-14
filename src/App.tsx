@@ -3,10 +3,22 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 
+import Button from "@material-ui/core/Button";
+import {
+  createMuiTheme,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core/styles";
+import Colors from "./Constants/Colors";
+
 function Home() {
   return (
     <div>
       <h2>Home</h2>
+
+      <Button variant="contained" color="primary">
+        Hello World
+      </Button>
     </div>
   );
 }
@@ -28,37 +40,55 @@ function Dashboard() {
 }
 
 function App() {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: Colors.PRIMARY,
+      },
+      error: {
+        main: Colors.ERROR
+      },
+      success: {
+        main: Colors.SUCCESS
+      },
+      contrastThreshold: 3,
+      tonalOffset: 0.2,
+    },
+  });
+
   return (
     <div className="App">
-      <Router>
-        <div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-          </ul>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <div>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+            </ul>
 
-          <hr />
+            <hr />
 
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/about">
+                <About />
+              </Route>
+              <Route path="/dashboard">
+                <Dashboard />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </ThemeProvider>
     </div>
   );
 }
