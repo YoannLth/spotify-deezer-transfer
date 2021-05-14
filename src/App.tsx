@@ -1,14 +1,9 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import logo from "./logo.svg";
-import "./App.css";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import './App.css';
 
-import {
-  createMuiTheme,
-  makeStyles,
-  ThemeProvider,
-} from "@material-ui/core/styles";
-import Colors from "./constants/colors";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Colors from './constants/colors';
 
 import Counter from './containers/counter/Counter';
 
@@ -17,7 +12,7 @@ function Home() {
     <div>
       <h2>Home</h2>
 
-      <Counter />      
+      <Counter />
     </div>
   );
 }
@@ -45,10 +40,10 @@ function App() {
         main: Colors.PRIMARY,
       },
       error: {
-        main: Colors.ERROR
+        main: Colors.ERROR,
       },
       success: {
-        main: Colors.SUCCESS
+        main: Colors.SUCCESS,
       },
       contrastThreshold: 3,
       tonalOffset: 0.2,
