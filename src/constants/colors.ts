@@ -1,0 +1,9 @@
+export default {
+  PRIMARY_100: '#C7CDEB',
+  PRIMARY: '#4E63C0',
+  ERROR: '#F43322',
+  SUCCESS: '#62C136',
+  TEXT: '#212121',
+  GREEN_SPOTIFY: '#1BD760',
+  BLUE_DEEZER: '#00C7F2',
+};

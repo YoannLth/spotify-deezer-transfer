@@ -7,6 +7,9 @@
         "plugin:react/recommended",
         "airbnb"
     ],
+    "globals": {
+        "JSX": "readonly"
+    },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
@@ -54,7 +57,9 @@
                     "minProperties": 5
                 }
             }
-        ]
+        ],
+        "import/no-named-default": "off",
+        "react/require-default-props": "off"
     },
     "settings": {
         "import/resolver": {
