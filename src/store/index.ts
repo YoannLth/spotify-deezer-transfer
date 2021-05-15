@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import counterSlice from './slices/counterSlice';
+import settingsSlice from './slices/settingsSlice';
+import stepperSlice from './slices/stepperSlice';
 import sagas from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
   reducer: {
-    counter: counterSlice.reducer,
+    settings: settingsSlice.reducer,
+    stepper: stepperSlice.reducer,
   },
   middleware: [sagaMiddleware],
 });

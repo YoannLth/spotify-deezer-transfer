@@ -6,14 +6,9 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Colors from './constants/colors';
 
 import Home from './screens/Home';
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
+import Settings from './screens/Start';
+import Redirect from './screens/Redirect';
+import router from './constants/router';
 
 function App() {
   const theme = createMuiTheme({
@@ -37,11 +32,17 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <Route exact path="/">
+            <Route exact path={router.ROUTES.HOME}>
               <Home />
             </Route>
-            <Route path="/start">
-              <About />
+            <Route path={router.ROUTES.STEPS}>
+              <Settings />
+            </Route>
+            <Route path={router.ROUTES.REDIRECT_AUTH_SPOTIFY}>
+              <Redirect />
+            </Route>
+            <Route path={router.ROUTES.REDIRECT_AUTH_DEEZER}>
+              <Redirect />
             </Route>
           </Switch>
         </Router>

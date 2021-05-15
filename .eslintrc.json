@@ -5,7 +5,8 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb"
+        "airbnb",
+        "prettier"
     ],
     "globals": {
         "JSX": "readonly"
@@ -20,7 +21,8 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "prettier"
     ],
     "rules": {
         "react/jsx-filename-extension": [
@@ -45,21 +47,13 @@
                 ]
             }
         ],
-        "object-curly-newline": [
-            "error",
-            {
-                "ImportDeclaration": {
-                    "multiline": true,
-                    "minProperties": 5
-                },
-                "ExportDeclaration": {
-                    "multiline": true,
-                    "minProperties": 5
-                }
-            }
-        ],
+        "object-curly-newline": "off",
         "import/no-named-default": "off",
-        "react/require-default-props": "off"
+        "react/require-default-props": "off",
+        "operator-linebreak": [
+            "error",
+            "after"
+        ]
     },
     "settings": {
         "import/resolver": {
