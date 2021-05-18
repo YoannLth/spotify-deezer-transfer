@@ -5,7 +5,7 @@ interface StepperSlice {
   currentStep: number;
 }
 
-const initialState: StepperSlice = {
+export const initialState: StepperSlice = {
   currentStep: 0,
 };
 
@@ -22,10 +22,12 @@ export const stepperSlice = createSlice({
     setCurrentStep: (state, action: PayloadAction<number>) => {
       state.currentStep = action.payload;
     },
+    reset: () => initialState,
   },
 });
 
 export const selectCurrentStep = (state: RootState) => state.stepper.currentStep;
 
-export const { incrementStep, decrementStep, setCurrentStep } = stepperSlice.actions;
+export const { incrementStep, decrementStep, setCurrentStep, reset } =
+  stepperSlice.actions;
 export default stepperSlice;

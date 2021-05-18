@@ -1,5 +1,4 @@
-import { put, takeEvery, all, fork, select } from 'redux-saga/effects';
-import apiConstants from '../../constants/api';
+import { call, put, takeEvery, all, fork, select } from 'redux-saga/effects';
 import { logError } from '../../utils/logger';
 import { RootState } from '../index';
 import {
@@ -9,36 +8,19 @@ import {
   selectDeezerToken,
 } from '../slices/settingsSlice';
 import { incrementStep } from '../slices/stepperSlice';
+import { fetchSpotifyUserData, fetchDeezerUserData } from '../../utils/api';
 
-function* verifyTokensSaga() {
+export function* verifyTokensSaga() {
   try {
     const state: RootState = yield select();
     const spotifyToken = selectSpotifyToken(state);
     const deezerToken = selectDeezerToken(state);
 
     // TODO: find a better way to handle token verification
-    const spotifyJson: Promise<any> = yield fetch(`${apiConstants.SPOTIFY_API_BASE_URL}/v1/me`, {
-      headers: {
-        Authorization: `Bearer ${spotifyToken}`,
-      },
-    }).then((response) => {
-      if (response.status >= 200 && response.status <= 299) {
-        return response.json();
-      }
-
-      throw new Error(`Error calling fetch: ${response.status}`);
-    });
+    const spotifyJson: Promise<any> = yield call(fetchSpotifyUserData, spotifyToken);
 
     // TODO: find a better way to handle token verification
-    const deezerJson: Promise<any> = yield fetch(
-      `${apiConstants.DEEZER_API_BASE_URL}/user/me?access_token=${deezerToken}`
-    ).then((response) => {
-      if (response.status >= 200 && response.status <= 299) {
-        return response.json();
-      }
-
-      throw new Error(`Error calling fetch: ${response.status}`);
-    });
+    const deezerJson: Promise<any> = yield call(fetchDeezerUserData, deezerToken);
 
     // TODO: REMOVE this log
     // eslint-disable-next-line no-console

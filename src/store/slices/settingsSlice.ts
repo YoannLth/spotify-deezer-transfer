@@ -9,7 +9,7 @@ interface CounterState {
 
 type TokensVerificationState = 'success' | 'error' | 'loading' | 'unknown';
 
-const initialState: CounterState = {
+export const initialState: CounterState = {
   spotifyToken: '',
   deezerToken: '',
   tokensVerificationState: 'unknown',
@@ -36,6 +36,7 @@ export const settingsSlice = createSlice({
     ) => {
       state.tokensVerificationState = action.payload;
     },
+    reset: () => initialState,
   },
 });
 
@@ -49,6 +50,7 @@ export const {
   setDeezerToken,
   verifyTokens,
   setTokensVerificationState,
+  reset,
 } = settingsSlice.actions;
 
 export default settingsSlice;

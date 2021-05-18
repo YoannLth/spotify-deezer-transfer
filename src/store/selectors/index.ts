@@ -11,6 +11,6 @@ export const selectIsContinueButtonEnabled = (state: RootState): boolean => {
         state.settings.tokensVerificationState !== 'loading'
       );
     default:
-      return true;
+      return false;
   }
 };
