@@ -8,7 +8,9 @@ import {
   selectDeezerToken,
 } from '../slices/settingsSlice';
 import { incrementStep } from '../slices/stepperSlice';
-import { fetchSpotifyUserData, fetchDeezerUserData } from '../../utils/api';
+import syncEngine from '../../typings/SynchronizationEngine';
+import SpotifyEngine from '../../typings/SpotifyEngine';
+import DeezerEngine from '../../typings/DeezerEngine';
 
 export function* verifyTokensSaga() {
   try {
@@ -16,18 +18,20 @@ export function* verifyTokensSaga() {
     const spotifyToken = selectSpotifyToken(state);
     const deezerToken = selectDeezerToken(state);
 
-    // TODO: find a better way to handle token verification
-    const spotifyJson: Promise<any> = yield call(fetchSpotifyUserData, spotifyToken);
+    const inputEngine = new SpotifyEngine(spotifyToken);
+    const outputEngine = new DeezerEngine(deezerToken);
+    syncEngine.init(inputEngine, outputEngine);
 
-    // TODO: find a better way to handle token verification
-    const deezerJson: Promise<any> = yield call(fetchDeezerUserData, deezerToken);
+    const servicesConnectionSucceed: boolean = yield call(
+      syncEngine.checkServicesConnection
+    );
 
-    // TODO: REMOVE this log
-    // eslint-disable-next-line no-console
-    console.log(spotifyJson, deezerJson);
-
-    yield put(setTokensVerificationState('success'));
-    yield put(incrementStep());
+    if (servicesConnectionSucceed) {
+      yield put(setTokensVerificationState('success'));
+      yield put(incrementStep());
+    } else {
+      yield put(setTokensVerificationState('error'));
+    }
   } catch (e) {
     logError(e);
     yield put(setTokensVerificationState('error'));

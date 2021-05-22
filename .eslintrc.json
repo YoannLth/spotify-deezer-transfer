@@ -55,7 +55,8 @@
         "operator-linebreak": [
             "error",
             "after"
-        ]
+        ],
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.ts", "**/*.spec.ts"]}]
     },
     "settings": {
         "import/resolver": {

@@ -1,11 +1,11 @@
 import React from 'react';
 
 export default () => {
-  console.log('Sync');
+  const title = 'Sync';
 
   return (
     <div>
-      <p>Sync</p>
+      <p>{title}</p>
     </div>
   );
 };

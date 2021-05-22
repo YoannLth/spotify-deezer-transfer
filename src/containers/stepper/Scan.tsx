@@ -1,11 +1,11 @@
 import React from 'react';
 
 export default () => {
-  console.log('Scan');
+  const title = 'Scan';
 
   return (
     <div>
-      <p>Scan</p>
+      <p>{title}</p>
     </div>
   );
 };
