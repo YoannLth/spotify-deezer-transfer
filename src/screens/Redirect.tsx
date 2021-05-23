@@ -27,12 +27,19 @@ export default () => {
     const params = getParametersFromURL(window.location.href);
 
     // Save tokens
-    if (history.location.pathname.includes('spotify')) { // TODO: find a better way to handle if / else
+    if (history.location.pathname.includes('spotify')) {
+      // TODO: find a better way to handle if / else
       dispatch(setSpotifyToken(params.access_token));
-      localStorage.setItem(localStorageConstants.KEYS.SPOTIFY_TOKEN, params.access_token);
+      localStorage.setItem(
+        localStorageConstants.KEYS.SPOTIFY_TOKEN,
+        params.access_token
+      );
     } else if (history.location.pathname.includes('deezer')) {
       dispatch(setDeezerToken(params.access_token));
-      localStorage.setItem(localStorageConstants.KEYS.DEEZER_TOKEN, params.access_token);
+      localStorage.setItem(
+        localStorageConstants.KEYS.DEEZER_TOKEN,
+        params.access_token
+      );
     }
 
     // Redirect to stepper page

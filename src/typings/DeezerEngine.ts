@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from 'axios';
-import apiConstants from '../constants/api';
 import { logError } from '../utils/logger';
 import { StreamingService } from './StreamingService';
 
@@ -9,7 +8,7 @@ class DeezerEngine implements StreamingService {
   userId?: string | undefined;
 
   httpClient: AxiosInstance = axios.create({
-    baseURL: apiConstants.DEEZER_API_BASE_URL,
+    baseURL: process.env.REACT_APP_DEEZER_API_BASE_URL,
     timeout: 10000,
   });
 
@@ -17,7 +16,7 @@ class DeezerEngine implements StreamingService {
     this.token = token;
 
     this.httpClient = axios.create({
-      baseURL: apiConstants.DEEZER_API_BASE_URL,
+      baseURL: process.env.REACT_APP_DEEZER_API_BASE_URL,
       timeout: 10000,
       params: {
         access_token: token,
