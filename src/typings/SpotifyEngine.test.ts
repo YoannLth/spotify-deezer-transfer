@@ -56,6 +56,22 @@ describe('SpotifyEngine', () => {
 
       await expect(engine.fetchUserData()).resolves.toBeDefined();
     });
+
+    it('should set throw userId if WS call succeed', async () => {
+      const id = '0123';
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 200,
+          response: {
+            id,
+          },
+        });
+      });
+
+      await engine.fetchUserData();
+      expect(engine.userId).toBe(id);
+    });
   });
 
   describe('verifyConnection', () => {

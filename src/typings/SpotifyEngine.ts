@@ -38,6 +38,12 @@ class SpotifyEngine implements StreamingService {
     if (response.data.error) {
       throw new Error(response.data.error.message);
     }
+
+    if (response.data.id) {
+      // TODO: type response
+      this.userId = `${response.data.id}`;
+    }
+
     return response;
   };
 }
